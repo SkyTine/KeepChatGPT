@@ -194,7 +194,7 @@
         }
         var ndivmenu = document.createElement('div');
         ndivmenu.setAttribute("class", "kmenu");
-        ndivmenu.innerHTML = `<ul><li id=nmenuid1>${tl("显示调试")}</li><li id=nmenuid2>${tl("暗色主题")}</li><li id=nmenuid3>${tl("取消审计")}</li><a href='${GM_info.script.namespace}'><li id=nmenuid4>${tl("关于")}</li></a></ul>`;
+        ndivmenu.innerHTML = `<ul style="display: flex;"><li id=nmenuid1>${tl("显示调试")}</li><li id=nmenuid2>${tl("暗色主题")}</li><li id=nmenuid3>${tl("取消审计")}</li><a href='${GM_info.script.namespace}'><li id=nmenuid4>${tl("关于")}</li></a></ul>`;
         document.body.appendChild(ndivmenu);
 
         $('#nmenuid1').appendChild(ncheckbox());
@@ -293,7 +293,7 @@
             symbol_prt = $(symbol2_class).parentElement;
         }
         $("main").kcg = ndivkcg;
-        symbol_prt.insertBefore($("main").kcg, symbol_prt.childNodes[0]);
+        symbol_prt.appendChild($("main").kcg);
 
         addStyle();
         setUserOptions();
@@ -374,14 +374,13 @@
 }
 .kmenu li {
     display: block;
-    padding: 8px 24px;
+    padding: 4px 24px;
     text-align: left;
     user-select: none;
     display: flex;
     align-items: center;
 }
 .kmenu li:hover {
-    background-color: #273746;
     cursor: pointer;
 }
 
