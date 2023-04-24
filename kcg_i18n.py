@@ -20,15 +20,15 @@ ar,bg,cs,da,de,el,en,eo,es,fi,fr,fr-CA,he,hu,id,it,ja,ka,ko,nb,nl,pl,pt-BR,ro,ru
 按照上述国家顺序翻译一句话，并且按照我要求的格式逐行输出
 格式要求：国家缩写: 翻译后的文字
 冒号后面首字母需要大写
-例如翻译"显示调试"的结果是: en: Hide debug window
+例如翻译"显示调试"的结果是: en: Show debug window
 接下来，请翻译: 建议间隔30秒
 
 ## 第三步、
 
 配置本脚本以下几个变量：
 lang：将KeepChatGPT中的lang变量值复制粘贴到这里
-new_str：填写想要本地化的词汇，例如取消审计，随意填，如果重复了就会覆盖
-new_str_min：填英文缩写，例如cm，随意填，如果重复了就会覆盖
+new_str：填写想要本地化的词汇，例如建议间隔30秒，随意填，如果重复了就会覆盖
+new_str_min：填本地化词汇的英文缩写，例如si，随意填，如果重复了就会覆盖
 transle_tmp：将ChatGPT翻译的结果复制粘贴到这里
 
 ## 第四步、
@@ -71,94 +71,94 @@ def print_json(lang):
 
 def main():
     lang = {
-    "index": {"暗色主题": "dm", "显示调试": "sd", "取消审计": "cm", "关于": "ab", "调整间隔": "af"},
+    "index": {"暗色主题": "dm", "显示调试": "sd", "取消审计": "cm", "取消动画": "ca", "关于": "ab", "建议间隔30秒": "si", "调整间隔": "mi"},
     "local": {
-"ar": {"dm": "الوضع الداكن", "sd": "إظهار التصحيح", "cm": "إلغاء التدقيق", "ab": "حول", "af": "ضبط التردد"},
-"bg": {"dm": "Тъмна тема", "sd": "Показване на отстраняване на грешки", "cm": "Отказ от одит", "ab": "За", "af": "Настройка на честотата"},
-"cs": {"dm": "Tmavý režim", "sd": "Zobrazit ladění", "cm": "Zrušení auditu", "ab": "O", "af": "Nastavit frekvenci"},
-"da": {"dm": "Mørk tilstand", "sd": "Vis fejlfinding", "cm": "Annuller revision", "ab": "Om", "af": "Juster frekvens"},
-"de": {"dm": "Dunkler Modus", "sd": "Fehlerbehebung anzeigen", "cm": "Prüfung abbrechen", "ab": "Über", "af": "Frequenz anpassen"},
-"el": {"dm": "Σκοτεινή θεματολογία", "sd": "Εμφάνιση αποσφαλμάτωσης", "cm": "Ακύρωση ελέγχου", "ab": "Σχετικά με", "af": "Ρύθμιση συχνότητας"},
-"en": {"dm": "Dark mode", "sd": "Show debugging", "cm": "Cancel audit", "ab": "About", "af": "Adjust frequency"},
-"eo": {"dm": "Malhela moduso", "sd": "Montri depuradon", "cm": "Nuligi kontroli", "ab": "Pri", "af": "Agordi frekvencion"},
-"es": {"dm": "Modo oscuro", "sd": "Mostrar depuración", "cm": "Cancelar auditoría", "ab": "Acerca de", "af": "Ajustar frecuencia"},
-"fi": {"dm": "Tumma tila", "sd": "Näytä virheenkorjaus", "cm": "Peruuta tarkistus", "ab": "Tietoa", "af": "Säädä taajuutta"},
-"fr": {"dm": "Mode sombre", "sd": "Afficher le débogage", "cm": "Annuler l'audit", "ab": "À propos de", "af": "Ajuster la fréquence"},
-"fr-CA": {"dm": "Mode nuit", "sd": "Afficher le débogage", "cm": "Annuler la vérification", "ab": "À propos de", "af": "Ajuster la fréquence"},
-"he": {"dm": "מצב כהה", "sd": "הצגת התיקון", "cm": "ביטול ביקורת", "ab": "אודות", "af": "להתאים תדר"},
-"hu": {"dm": "Sötét mód", "sd": "Hibakeresés mutatása", "cm": "Ellenőrzés megszüntetése", "ab": "Rólunk", "af": "Frekvencia beállítása"},
-"id": {"dm": "Mode gelap", "sd": "Tampilkan debugging", "cm": "Batalkan audit", "ab": "Tentang", "af": "Sesuaikan frekuensi"},
-"it": {"dm": "Modalità scura", "sd": "Mostra debug", "cm": "Annulla verifica", "ab": "Riguardo a", "af": "Regola la frequenza"},
-"ja": {"dm": "ダークモード", "sd": "デバッグを表示", "cm": "監査をキャンセル", "ab": "について", "af": "周波数を調整する"},
-"ka": {"dm": "ბნელი რეჟიმი", "sd": "გამოჩენა დებაგი", "cm": "ანულირება აუდიტი", "ab": "შესახებ", "af": "ფრექვენციის შემადგენლობა"},
-"ko": {"dm": "다크 모드", "sd": "디버깅 표시", "cm": "감사 취소", "ab": "관하여", "af": "주파수 조정"},
-"nb": {"dm": "Mørk modus", "sd": "Vis feilsøking", "cm": "Avbryt revisjonen", "ab": "Om", "af": "Juster frekvens"},
-"nl": {"dm": "Donkere modus", "sd": "Foutopsporing weergeven", "cm": "Controle annuleren", "ab": "Over", "af": "Frequentie aanpassen"},
-"pl": {"dm": "Tryb ciemny", "sd": "Pokaż debugowanie", "cm": "Anuluj audyt", "ab": "O", "af": "Dostosuj częstotliwość"},
-"pt-BR": {"dm": "Modo escuro", "sd": "Mostrar depuração", "cm": "Cancelar auditoria", "ab": "Sobre", "af": "Ajustar frequência"},
-"ro": {"dm": "Mod întunecat", "sd": "Afișare depanare", "cm": "Anulare audit", "ab": "Despre", "af": "Reglați frecvența"},
-"ru": {"dm": "Темный режим", "sd": "Показать отладку", "cm": "Отменить аудит", "ab": "О", "af": "Настройте частоту"},
-"sk": {"dm": "Tmavý režim", "sd": "Zobraziť ladenie", "cm": "Zrušiť audit", "ab": "O", "af": "Nastavte frekvenciu"},
-"sr": {"dm": "Тамни режим", "sd": "Прикажи отклањање грешака", "cm": "Откажи ревизију", "ab": "О", "af": "Podesi frekvenciju"},
-"sv": {"dm": "Mörkt läge", "sd": "Visa felsökning", "cm": "Avbryt revision", "ab": "Om", "af": "Justera frekvensen"},
-"th": {"dm": "โหมดมืด", "sd": "แสดงการแก้ไขข้อผิดพลาด", "cm": "ยกเลิกการตรวจสอบ", "ab": "เกี่ยวกับ", "af": "ปรับความถี่"},
-"tr": {"dm": "Karanlık mod", "sd": "Hata ayıklama göster", "cm": "Denetimi İptal Et", "ab": "Hakkında", "af": "Frekans ayarla"},
-"uk": {"dm": "Темний режим", "sd": "Показати налагодження", "cm": "Скасувати аудит", "ab": "Про", "af": "Налаштуйте частоту"},
-"ug": {"dm": "تېما كۆرسىتىش", "sd": "كۆرسەتكەن يۇقىرىلاش", "cm": "ئەمەلدىن قالدۇرۇش", "ab": "ئۇچۇرلىق", "af": "تېزلىكنى تەڭشەش"},
-"vi": {"dm": "Chế độ tối", "sd": "Hiển thị gỡ lỗi", "cm": "Hủy đánh giá", "ab": "Về", "af": "Điều chỉnh tần số"},
-"zh-CN": {"dm": "暗色主题", "sd": "显示调试", "cm": "取消审计", "ab": "关于", "af": "调整频率"},
-"zh-TW": {"dm": "暗黑模式", "sd": "顯示調試", "cm": "取消稽核", "ab": "關於", "af": "調整頻率"}
+"ar": {"dm": "الوضع الداكن", "sd": "إظهار التصحيح", "cm": "إلغاء التدقيق", "ca": "إلغاء الرسوم المتحركة", "ab": "حول", "si": "اقتراح فاصل زمني 30 ثانية", "mi": "تعديل الفاصل"},
+"bg": {"dm": "Тъмна тема", "sd": "Показване на отстраняване на грешки", "cm": "Отказ от одит", "ca": "Отмяна на анимацията", "ab": "За", "si": "Предложете интервал от 30 секунди", "mi": "Промяна на интервала"},
+"cs": {"dm": "Tmavý režim", "sd": "Zobrazit ladění", "cm": "Zrušení auditu", "ca": "Zrušit animaci", "ab": "O", "si": "Navrhnout interval 30 sekund", "mi": "Upravit interval"},
+"da": {"dm": "Mørk tilstand", "sd": "Vis fejlfinding", "cm": "Annuller revision", "ca": "Annuller animation", "ab": "Om", "si": "Forslag interval på 30 sekunder", "mi": "Ændre interval"},
+"de": {"dm": "Dunkler Modus", "sd": "Fehlerbehebung anzeigen", "cm": "Prüfung abbrechen", "ca": "Animation abbrechen", "ab": "Über", "si": "Vorschlag für Intervall von 30 Sekunden", "mi": "Intervall bearbeiten"},
+"el": {"dm": "Σκοτεινή θεματολογία", "sd": "Εμφάνιση αποσφαλμάτωσης", "cm": "Ακύρωση ελέγχου", "ca": "Ακύρωση κινούμενων σχεδίων", "ab": "Σχετικά με", "si": "Προτείνετε διάστημα 30 δευτερολέπτων", "mi": "Τροποποίηση διαστήματος"},
+"en": {"dm": "Dark mode", "sd": "Show debugging", "cm": "Cancel audit", "ca": "Cancel animation", "ab": "About", "si": "Suggest interval of 30 seconds", "mi": "Modify interval"},
+"eo": {"dm": "Malhela moduso", "sd": "Montri depuradon", "cm": "Nuligi kontroli", "ca": "Nuligi animacion", "ab": "Pri", "si": "Sugesti intervalon de 30 sekundoj", "mi": "Modifi intervalon"},
+"es": {"dm": "Modo oscuro", "sd": "Mostrar depuración", "cm": "Cancelar auditoría", "ca": "Cancelar animación", "ab": "Acerca de", "si": "Sugerir un intervalo de 30 segundos", "mi": "Modificar intervalo"},
+"fi": {"dm": "Tumma tila", "sd": "Näytä virheenkorjaus", "cm": "Peruuta tarkistus", "ca": "Peruuta animaatio", "ab": "Tietoa", "si": "Ehdota 30 sekunnin väliaikaa", "mi": "Muokkaa väliä"},
+"fr": {"dm": "Mode sombre", "sd": "Afficher le débogage", "cm": "Annuler l'audit", "ca": "Annuler l'animation", "ab": "À propos de", "si": "Suggérer un intervalle de 30 secondes", "mi": "Modifier l'intervalle"},
+"fr-CA": {"dm": "Mode nuit", "sd": "Afficher le débogage", "cm": "Annuler la vérification", "ca": "Annuler l'animation", "ab": "À propos de", "si": "Suggérer un intervalle de 30 secondes", "mi": "Modifier l'intervalle"},
+"he": {"dm": "מצב כהה", "sd": "הצגת התיקון", "cm": "ביטול ביקורת", "ca": "בטל אנימציה", "ab": "אודות", "si": "הצע מרווח של 30 שניות", "mi": "שינוי מרווח"},
+"hu": {"dm": "Sötét mód", "sd": "Hibakeresés mutatása", "cm": "Ellenőrzés megszüntetése", "ca": "Animáció törlése", "ab": "Rólunk", "si": "Javaslat 30 másodperces időközre", "mi": "Időköz módosítása"},
+"id": {"dm": "Mode gelap", "sd": "Tampilkan debugging", "cm": "Batalkan audit", "ca": "Batalkan animasi", "ab": "Tentang", "si": "Sarankan interval 30 detik", "mi": "Modifikasi interval"},
+"it": {"dm": "Modalità scura", "sd": "Mostra debug", "cm": "Annulla verifica", "ca": "Annulla animazione", "ab": "Riguardo a", "si": "Suggerisci un intervallo di 30 secondi", "mi": "Modifica intervallo"},
+"ja": {"dm": "ダークモード", "sd": "デバッグを表示", "cm": "監査をキャンセル", "ca": "アニメーションのキャンセル", "ab": "について", "si": "30秒間隔を提案する", "mi": "間隔を変更する"},
+"ka": {"dm": "ბნელი რეჟიმი", "sd": "გამოჩენა დებაგი", "cm": "ანულირება აუდიტი", "ca": "ანიმაციის გაუქმება", "ab": "შესახებ", "si": "30 წამის ინტერვალის შეტანა", "mi": "ინტერვალის შეცვლა"},
+"ko": {"dm": "다크 모드", "sd": "디버깅 표시", "cm": "감사 취소", "ca": "애니메이션 취소", "ab": "관하여", "si": "30초 간격 건의", "mi": "간격 수정"},
+"nb": {"dm": "Mørk modus", "sd": "Vis feilsøking", "cm": "Avbryt revisjonen", "ca": "Avbryt animasjon", "ab": "Om", "si": "Forslag om et intervall på 30 sekunder", "mi": "Endre intervall"},
+"nl": {"dm": "Donkere modus", "sd": "Foutopsporing weergeven", "cm": "Controle annuleren", "ca": "Animatie annuleren", "ab": "Over", "si": "Stel een interval van 30 seconden voor", "mi": "Interval wijzigen"},
+"pl": {"dm": "Tryb ciemny", "sd": "Pokaż debugowanie", "cm": "Anuluj audyt", "ca": "Anuluj animację", "ab": "O", "si": "Zasugeruj interwał 30 sekund", "mi": "Zmień interwał"},
+"pt-BR": {"dm": "Modo escuro", "sd": "Mostrar depuração", "cm": "Cancelar auditoria", "ca": "Cancelar animação", "ab": "Sobre", "si": "Sugira um intervalo de 30 segundos", "mi": "Modificar intervalo"},
+"ro": {"dm": "Mod întunecat", "sd": "Afișare depanare", "cm": "Anulare audit", "ca": "Anulare animație", "ab": "Despre", "si": "Sugerați un interval de 30 secunde", "mi": "Modificați intervalul"},
+"ru": {"dm": "Темный режим", "sd": "Показать отладку", "cm": "Отменить аудит", "ca": "Отменить анимацию", "ab": "О", "si": "Предложить интервал в 30 секунд", "mi": "Изменить интервал"},
+"sk": {"dm": "Tmavý režim", "sd": "Zobraziť ladenie", "cm": "Zrušiť audit", "ca": "Zrušiť animáciu", "ab": "O", "si": "Navrhnúť interval 30 sekúnd", "mi": "Zmena intervalu"},
+"sr": {"dm": "Тамни режим", "sd": "Прикажи отклањање грешака", "cm": "Откажи ревизију", "ca": "Откажи анимацију", "ab": "О", "si": "Predložiti interval od 30 sekundi", "mi": "Измена интервала"},
+"sv": {"dm": "Mörkt läge", "sd": "Visa felsökning", "cm": "Avbryt revision", "ca": "Avbryt animation", "ab": "Om", "si": "Föreslå intervall på 30 sekunder", "mi": "Ändra intervall"},
+"th": {"dm": "โหมดมืด", "sd": "แสดงการแก้ไขข้อผิดพลาด", "cm": "ยกเลิกการตรวจสอบ", "ca": "ยกเลิกการเคลื่อนไหว", "ab": "เกี่ยวกับ", "si": "เสนอช่วงเวลา 30 วินาที", "mi": "แก้ไขระยะห่าง"},
+"tr": {"dm": "Karanlık mod", "sd": "Hata ayıklama göster", "cm": "Denetimi İptal Et", "ca": "Animasyonu iptal et", "ab": "Hakkında", "si": "30 saniyelik aralık önerin", "mi": "Aralığı değiştir"},
+"uk": {"dm": "Темний режим", "sd": "Показати налагодження", "cm": "Скасувати аудит", "ca": "Скасувати анімацію", "ab": "Про", "si": "Запропонуйте інтервал у 30 секунд", "mi": "Змінити інтервал"},
+"ug": {"dm": "تېما كۆرسىتىش", "sd": "كۆرسەتكەن يۇقىرىلاش", "cm": "ئەمەلدىن قالدۇرۇش", "ca": "ئېنىماتىكىنى بىكار قىلىش", "ab": "ئۇچۇرلىق", "si": "30 سىكونتلىك ئارىلىقنى سۇنۇشتۇرۇش", "mi": "ئارىلىق ئۆزگەرتىش"},
+"vi": {"dm": "Chế độ tối", "sd": "Hiển thị gỡ lỗi", "cm": "Hủy đánh giá", "ca": "Hủy hoạt hình", "ab": "Về", "si": "Đề xuất khoảng thời gian 30 giây", "mi": "Sửa khoảng cách"},
+"zh-CN": {"dm": "暗色主题", "sd": "显示调试", "cm": "取消审计", "ca": "取消动画", "ab": "关于", "si": "建议间隔30秒以上，作者平时设置的是150", "mi": "调整间隔"},
+"zh-TW": {"dm": "暗黑模式", "sd": "顯示調試", "cm": "取消稽核", "ca": "取消動畫", "ab": "關於", "si": "建議間隔30秒", "mi": "調整間隔"}
     }
 }
 
-    new_str = "建议间隔30秒"
+    new_str = "检查更新"
 
-    new_str_min = "si"
+    new_str_min = "cu"
 
     transle_tmp = """
-ar: اقتراح فاصل زمني 30 ثانية
-bg: Предложете интервал от 30 секунди
-cs: Navrhnout interval 30 sekund
-da: Forslag interval på 30 sekunder
-de: Vorschlag für Intervall von 30 Sekunden
-el: Προτείνετε διάστημα 30 δευτερολέπτων
-en: Suggest interval of 30 seconds
-eo: Sugesti intervalon de 30 sekundoj
-es: Sugerir un intervalo de 30 segundos
-fi: Ehdota 30 sekunnin väliaikaa
-fr: Suggérer un intervalle de 30 secondes
-fr-CA: Suggérer un intervalle de 30 secondes
-he: הצע מרווח של 30 שניות
-hu: Javaslat 30 másodperces időközre
-id: Sarankan interval 30 detik
-it: Suggerisci un intervallo di 30 secondi
-ja: 30秒間隔を提案する
-ka: 30 წამის ინტერვალის შეტანა
-ko: 30초 간격 건의
-nb: Forslag om et intervall på 30 sekunder
-nl: Stel een interval van 30 seconden voor
-pl: Zasugeruj interwał 30 sekund
-pt-BR: Sugira um intervalo de 30 segundos
-ro: Sugerați un interval de 30 secunde
-ru: Предложить интервал в 30 секунд
-sk: Navrhnúť interval 30 sekúnd
-sr: Predložiti interval od 30 sekundi
-sv: Föreslå intervall på 30 sekunder
-th: เสนอช่วงเวลา 30 วินาที
-tr: 30 saniyelik aralık önerin
-uk: Запропонуйте інтервал у 30 секунд
-ug: 30 سىكونتلىك ئارىلىقنى سۇنۇشتۇرۇش
-vi: Đề xuất khoảng thời gian 30 giây
-zh-CN: 建议间隔30秒
-zh-TW: 建議間隔30秒
+ar: التحقق من التحديثات
+bg: Проверка на актуализации
+cs: Kontrola aktualizací
+da: Tjek for opdateringer
+de: Überprüfung auf Updates
+el: Έλεγχος ενημερώσεων
+en: Check for updates
+eo: Kontroli ĝisdatigojn
+es: Comprobar actualizaciones
+fi: Tarkista päivitykset
+fr: Vérifier les mises à jour
+fr-CA: Vérifier les mises à jour
+he: בדיקת עדכונים
+hu: Frissítések keresése
+id: Periksa Pembaruan
+it: Verifica aggiornamenti
+ja: 更新をチェックする
+ka: განახლებების შემოწმება
+ko: 업데이트 확인
+nb: Sjekk etter oppdateringer
+nl: Controleren op updates
+pl: Sprawdź aktualizacje
+pt-BR: Verificar atualizações
+ro: Verifică actualizări
+ru: Проверить обновления
+sk: Kontrola aktualizácií
+sr: Provera ažuriranja
+sv: Kontrollera uppdateringar
+th: ตรวจสอบการอัปเดต
+tr: Güncelleştirmeleri kontrol et
+uk: Перевірити оновлення
+ug: يېڭىلانما كۆزەت
+vi: Kiểm tra cập nhật
+zh-CN: 检查更新
+zh-TW: 檢查更新
 """
 
-    lang = lang_add(lang, new_str, new_str_min, transle_tmp)
-    print_json(lang)
-
-    # del_str = "浅色主题"
-    # del_str_min = "lm"
+    # del_str = "调整频率"
+    # del_str_min = "af"
     # lang = lang_del(lang, del_str, del_str_min)
-    # print_json(lang)
+
+    lang = lang_add(lang, new_str, new_str_min, transle_tmp)
+
+    print_json(lang)
 
 main()
