@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name              KeepChatGPT
 // @description       让我们在使用ChatGPT过程中更高效、更顺畅，完美解决ChatGPT网络错误，不再频繁地刷新网页，足足省去10个多余的步骤。还可以取消后台监管审计。解决了这几类报错: (1) NetworkError when attempting to fetch resource. (2) Something went wrong. If this issue persists please contact us through our help center at help.openai.com. (3) This content may violate our content policy. If you believe this to be in error, please submit your feedback — your input will aid our research in this area. (4) Conversation not found.
-// @version           9.1
-// @author            xcanwin
-// @namespace         https://github.com/xcanwin/KeepChatGPT/
-// @supportURL        https://github.com/xcanwin/KeepChatGPT/
-// @updateURL         https://raw.githubusercontent.com/xcanwin/KeepChatGPT/main/KeepChatGPT.user.js
-// @downloadURL       https://raw.githubusercontent.com/xcanwin/KeepChatGPT/main/KeepChatGPT.user.js
+// @version           9.2
+// @author            SkyTine
+// @namespace         https://github.com/SkyTine/KeepChatGPT/
+// @supportURL        https://github.com/SkyTine/KeepChatGPT/
+// @updateURL         https://raw.githubusercontent.com/SkyTine/KeepChatGPT/Skytine-patch-self/KeepChatGPT.user.js
+// @downloadURL       https://raw.githubusercontent.com/SkyTine/KeepChatGPT/Skytine-patch-self/KeepChatGPT.user.js
 // @description:ar    لنجعل استخدام ChatGPT لدينا أكثر كفاءة وسلاسة، من خلال تحسين الحل لأخطاء شبكة ChatGPT. وهذا يوفر لنا من تحديث صفحة الويب بشكل متكرر ويقضي على أكثر من 10 خطوات غير ضرورية. تم حل الأخطاء التالية: (1) NetworkError when attempting to fetch resource. (2) Something went wrong. If this issue persists please contact us through our help center at help.openai.com.
 // @description:bg    Нека направим използването на ChatGPT по-ефективно и по-гладко, като усъвършенстваме решението за мрежови грешки на ChatGPT. Това ни спестява от често опресняване на уеб страницата и отстранява над 10 ненужни стъпки. Следните грешки са решен: (1) NetworkError when attempting to fetch resource. (2) Something went wrong. If this issue persists please contact us through our help center at help.openai.com.
 // @description:cs    Vylepšeme naše používání ChatGPT, aby bylo efektivnější a plynulejší, dokonalým řešením síťových chyb ChatGPT. Toto nás šetří častým obnovováním webové stránky a eliminuje více než 10 zbytečných kroků. Následující chyby byly vyřešen: (1) NetworkError when attempting to fetch resource. (2) Something went wrong. If this issue persists please contact us through our help center at help.openai.com.
@@ -360,7 +360,7 @@
             }
         };
         var icon = GM_info.script.icon ? GM_info.script.icon : `${GM_info.script.namespace}raw/main/assets/logo.svg`;
-        ndivkcg._symbol1_innerHTML = `<img src='${icon}' />Keep${ndivkcg.id.slice(1,2).toUpperCase()}hatGPT by x${ndivkcg.id.slice(1,2)}anwin`;
+        ndivkcg._symbol1_innerHTML = `<img src='${icon}' />Keep${ndivkcg.id.slice(1,2).toUpperCase()}hatGPT`;
         ndivkcg._symbol2_innerHTML = `Keep${ndivkcg.id.slice(1,2).toUpperCase()}hatGPT`;
 
         if ($(symbol1_class)) {
