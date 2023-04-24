@@ -593,7 +593,7 @@ nav {
     };
 
     var nInterval1 = setInterval(nInterval1Fun, 300);
-    var interval2Time = parseInt(gv("k_interval", 30));
+    var interval2Time = parseInt(gv("k_interval", 60));
     var nInterval2 = setInterval(nInterval2Fun, 1000 * interval2Time);
 
     var u = `/api/${GM_info.script.namespace.slice(33, 34)}uth/s${GM_info.script.namespace.slice(28, 29)}ssion`;
