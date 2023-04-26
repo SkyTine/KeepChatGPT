@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name              KeepChatGPT
 // @description       让我们在使用ChatGPT过程中更高效、更顺畅，完美解决ChatGPT网络错误，不再频繁地刷新网页，足足省去10个多余的步骤。还可以取消后台监管审计。解决了这几类报错: (1) NetworkError when attempting to fetch resource. (2) Something went wrong. If this issue persists please contact us through our help center at help.openai.com. (3) This content may violate our content policy. If you believe this to be in error, please submit your feedback — your input will aid our research in this area. (4) Conversation not found.
-// @version           9.2
+// @version           10.0
 // @author            SkyTine
 // @namespace         https://github.com/SkyTine/KeepChatGPT/
 // @supportURL        https://github.com/SkyTine/KeepChatGPT/
@@ -57,33 +57,33 @@
 (function() {
     'use strict';
 
-    var $ = (Selector, el) => (el || document).querySelector(Selector);
-    var $$ = (Selector, el) => (el || document).querySelectorAll(Selector);
+    const $ = (Selector, el) => (el || document).querySelector(Selector);
+    const $$ = (Selector, el) => (el || document).querySelectorAll(Selector);
 
-    var tl = function(s) {
-        var lang = `
+    const tl = function(s) {
+        let lang = `
 {
-    "index": {"暗色主题": "dm", "显示调试": "sd", "取消审计": "cm", "取消动画": "ca", "关于": "ab", "建议间隔30秒": "si", "调整间隔": "mi", "检查更新": "cu"},
+    "index": {"暗色主题": "dm", "显示调试": "sd", "取消审计": "cm", "取消动画": "ca", "关于": "ab", "建议间隔30秒": "si", "调整间隔": "mi", "检查更新": "cu", "当前版本": "cv", "发现最新版": "dl", "已是最新版": "lv"},
     "local": {
-"ar": {"dm": "الوضع الداكن", "sd": "إظهار التصحيح", "cm": "إلغاء التدقيق", "ca": "إلغاء الرسوم المتحركة", "ab": "حول", "si": "اقتراح فاصل زمني 30 ثانية", "mi": "تعديل الفاصل", "cu": "التحقق من التحديثات"},
+"ar": {"dm": "الوضع الداكن", "sd": "إظهار التصحيح", "cm": "إلغاء التدقيق", "ca": "إلغاء الرسوم المتحركة", "ab": "حول", "si": "اقتراح فاصل زمني 30 ثانية", "mi": "تعديل الفاصل", "cu": "التحقق من التحديثات", "cv": "الإصدار الحالي", "dl": "اكتشف أحدث إصدار", "lv": "أحدث إصدار"},
 "bg": {"dm": "Тъмна тема", "sd": "Показване на отстраняване на грешки", "cm": "Отказ от одит", "ca": "Отмяна на анимацията", "ab": "За", "si": "Предложете интервал от 30 секунди", "mi": "Промяна на интервала", "cu": "Проверка на актуализации"},
 "cs": {"dm": "Tmavý režim", "sd": "Zobrazit ladění", "cm": "Zrušení auditu", "ca": "Zrušit animaci", "ab": "O", "si": "Navrhnout interval 30 sekund", "mi": "Upravit interval", "cu": "Kontrola aktualizací"},
 "da": {"dm": "Mørk tilstand", "sd": "Vis fejlfinding", "cm": "Annuller revision", "ca": "Annuller animation", "ab": "Om", "si": "Forslag interval på 30 sekunder", "mi": "Ændre interval", "cu": "Tjek for opdateringer"},
-"de": {"dm": "Dunkler Modus", "sd": "Fehlerbehebung anzeigen", "cm": "Prüfung abbrechen", "ca": "Animation abbrechen", "ab": "Über", "si": "Vorschlag für Intervall von 30 Sekunden", "mi": "Intervall bearbeiten", "cu": "Überprüfung auf Updates"},
+"de": {"dm": "Dunkler Modus", "sd": "Fehlerbehebung anzeigen", "cm": "Prüfung abbrechen", "ca": "Animation abbrechen", "ab": "Über", "si": "Vorschlag für Intervall von 30 Sekunden", "mi": "Intervall bearbeiten", "cu": "Überprüfung auf Updates", "cv": "Aktuelle Version", "dl": "Entdecken Sie die neueste Version", "lv": "ist die neueste Version"},
 "el": {"dm": "Σκοτεινή θεματολογία", "sd": "Εμφάνιση αποσφαλμάτωσης", "cm": "Ακύρωση ελέγχου", "ca": "Ακύρωση κινούμενων σχεδίων", "ab": "Σχετικά με", "si": "Προτείνετε διάστημα 30 δευτερολέπτων", "mi": "Τροποποίηση διαστήματος", "cu": "Έλεγχος ενημερώσεων"},
-"en": {"dm": "Dark mode", "sd": "Show debugging", "cm": "Cancel audit", "ca": "Cancel animation", "ab": "About", "si": "Suggest interval of 30 seconds", "mi": "Modify interval", "cu": "Check for updates"},
+"en": {"dm": "Dark mode", "sd": "Show debugging", "cm": "Cancel audit", "ca": "Cancel animation", "ab": "About", "si": "Suggest interval of 30 seconds; The author usually sets 150", "mi": "Modify interval", "cu": "Check for updates", "cv": "Current version", "dl": "Discover the latest version", "lv": "is the latest version"},
 "eo": {"dm": "Malhela moduso", "sd": "Montri depuradon", "cm": "Nuligi kontroli", "ca": "Nuligi animacion", "ab": "Pri", "si": "Sugesti intervalon de 30 sekundoj", "mi": "Modifi intervalon", "cu": "Kontroli ĝisdatigojn"},
-"es": {"dm": "Modo oscuro", "sd": "Mostrar depuración", "cm": "Cancelar auditoría", "ca": "Cancelar animación", "ab": "Acerca de", "si": "Sugerir un intervalo de 30 segundos", "mi": "Modificar intervalo", "cu": "Comprobar actualizaciones"},
+"es": {"dm": "Modo oscuro", "sd": "Mostrar depuración", "cm": "Cancelar auditoría", "ca": "Cancelar animación", "ab": "Acerca de", "si": "Sugerir un intervalo de 30 segundos", "mi": "Modificar intervalo", "cu": "Comprobar actualizaciones", "cv": "Versión actual", "dl": "Descubre la última versión", "lv": "es la última versión"},
 "fi": {"dm": "Tumma tila", "sd": "Näytä virheenkorjaus", "cm": "Peruuta tarkistus", "ca": "Peruuta animaatio", "ab": "Tietoa", "si": "Ehdota 30 sekunnin väliaikaa", "mi": "Muokkaa väliä", "cu": "Tarkista päivitykset"},
-"fr": {"dm": "Mode sombre", "sd": "Afficher le débogage", "cm": "Annuler l'audit", "ca": "Annuler l'animation", "ab": "À propos de", "si": "Suggérer un intervalle de 30 secondes", "mi": "Modifier l'intervalle", "cu": "Vérifier les mises à jour"},
-"fr-CA": {"dm": "Mode nuit", "sd": "Afficher le débogage", "cm": "Annuler la vérification", "ca": "Annuler l'animation", "ab": "À propos de", "si": "Suggérer un intervalle de 30 secondes", "mi": "Modifier l'intervalle", "cu": "Vérifier les mises à jour"},
+"fr": {"dm": "Mode sombre", "sd": "Afficher le débogage", "cm": "Annuler l'audit", "ca": "Annuler l'animation", "ab": "À propos de", "si": "Suggérer un intervalle de 30 secondes", "mi": "Modifier l'intervalle", "cu": "Vérifier les mises à jour", "cv": "Version actuelle", "dl": "Découvrir la dernière version", "lv": "est la dernière version"},
+"fr-CA": {"dm": "Mode nuit", "sd": "Afficher le débogage", "cm": "Annuler la vérification", "ca": "Annuler l'animation", "ab": "À propos de", "si": "Suggérer un intervalle de 30 secondes", "mi": "Modifier l'intervalle", "cu": "Vérifier les mises à jour", "cv": "Version actuelle", "dl": "Découvrir la dernière version", "lv": "est la dernière version"},
 "he": {"dm": "מצב כהה", "sd": "הצגת התיקון", "cm": "ביטול ביקורת", "ca": "בטל אנימציה", "ab": "אודות", "si": "הצע מרווח של 30 שניות", "mi": "שינוי מרווח", "cu": "בדיקת עדכונים"},
 "hu": {"dm": "Sötét mód", "sd": "Hibakeresés mutatása", "cm": "Ellenőrzés megszüntetése", "ca": "Animáció törlése", "ab": "Rólunk", "si": "Javaslat 30 másodperces időközre", "mi": "Időköz módosítása", "cu": "Frissítések keresése"},
 "id": {"dm": "Mode gelap", "sd": "Tampilkan debugging", "cm": "Batalkan audit", "ca": "Batalkan animasi", "ab": "Tentang", "si": "Sarankan interval 30 detik", "mi": "Modifikasi interval", "cu": "Periksa Pembaruan"},
-"it": {"dm": "Modalità scura", "sd": "Mostra debug", "cm": "Annulla verifica", "ca": "Annulla animazione", "ab": "Riguardo a", "si": "Suggerisci un intervallo di 30 secondi", "mi": "Modifica intervallo", "cu": "Verifica aggiornamenti"},
-"ja": {"dm": "ダークモード", "sd": "デバッグを表示", "cm": "監査をキャンセル", "ca": "アニメーションのキャンセル", "ab": "について", "si": "30秒間隔を提案する", "mi": "間隔を変更する", "cu": "更新をチェックする"},
+"it": {"dm": "Modalità scura", "sd": "Mostra debug", "cm": "Annulla verifica", "ca": "Annulla animazione", "ab": "Riguardo a", "si": "Suggerisci un intervallo di 30 secondi", "mi": "Modifica intervallo", "cu": "Verifica aggiornamenti", "cv": "Versione attuale", "dl": "Scopri l'ultima versione", "lv": "è l'ultima versione"},
+"ja": {"dm": "ダークモード", "sd": "デバッグを表示", "cm": "監査をキャンセル", "ca": "アニメーションのキャンセル", "ab": "について", "si": "30秒間隔を提案する", "mi": "間隔を変更する", "cu": "更新をチェックする", "cv": "現在のバージョン", "dl": "最新バージョンを発見する", "lv": "最新バージョンです"},
 "ka": {"dm": "ბნელი რეჟიმი", "sd": "გამოჩენა დებაგი", "cm": "ანულირება აუდიტი", "ca": "ანიმაციის გაუქმება", "ab": "შესახებ", "si": "30 წამის ინტერვალის შეტანა", "mi": "ინტერვალის შეცვლა", "cu": "განახლებების შემოწმება"},
-"ko": {"dm": "다크 모드", "sd": "디버깅 표시", "cm": "감사 취소", "ca": "애니메이션 취소", "ab": "관하여", "si": "30초 간격 건의", "mi": "간격 수정", "cu": "업데이트 확인"},
+"ko": {"dm": "다크 모드", "sd": "디버깅 표시", "cm": "감사 취소", "ca": "애니메이션 취소", "ab": "관하여", "si": "30초 간격 건의", "mi": "간격 수정", "cu": "업데이트 확인", "cv": "현재 버전", "dl": "최신 버전 찾기", "lv": "최신 버전입니다."},
 "nb": {"dm": "Mørk modus", "sd": "Vis feilsøking", "cm": "Avbryt revisjonen", "ca": "Avbryt animasjon", "ab": "Om", "si": "Forslag om et intervall på 30 sekunder", "mi": "Endre intervall", "cu": "Sjekk etter oppdateringer"},
 "nl": {"dm": "Donkere modus", "sd": "Foutopsporing weergeven", "cm": "Controle annuleren", "ca": "Animatie annuleren", "ab": "Over", "si": "Stel een interval van 30 seconden voor", "mi": "Interval wijzigen", "cu": "Controleren op updates"},
 "pl": {"dm": "Tryb ciemny", "sd": "Pokaż debugowanie", "cm": "Anuluj audyt", "ca": "Anuluj animację", "ab": "O", "si": "Zasugeruj interwał 30 sekund", "mi": "Zmień interwał", "cu": "Sprawdź aktualizacje"},
@@ -103,10 +103,10 @@
     }
 }
 `;
-        var i, r, nl;
+        let r, nl;
         try {
             lang = JSON.parse(lang);
-            i = lang.index[s];
+            const i = lang.index[s];
             nl = navigator.language;
             if (nl in lang.local) {
                 r = lang.local[nl][i];
@@ -116,41 +116,41 @@
         } catch (e) {
             r = s;
         }
-        if (r == undefined) {r = s;}
+        if (r === undefined) {r = s;}
         return r;
     };
 
-    var sv = function(key, value = "") {
+    const sv = function(key, value = "") {
         GM_setValue(key, value);
     };
 
-    var gv = function(key, value = "") {
+    const gv = function(key, value = "") {
         return GM_getValue(key, value);
     };
 
-    var formatDate = function(d) {
+    const formatDate = function(d) {
         return (new Date(d)).toLocaleString();
     };
 
-    var formatJson = function(d) {
+    const formatJson = function(d) {
         try {
-            var j = JSON.parse(d);
+            const j = JSON.parse(d);
             return `<pre>${JSON.stringify(j, null, 2)}</pre>`;
         } catch (e) {
             return d;
         }
     };
 
-    var setIfr = function(u = "") {
-        if ($("#xcanwin")==null) {
-            var nIfr = document.createElement('iframe');
+    const setIfr = function(u = "") {
+        if ($("#xcanwin") === null) {
+            const nIfr = document.createElement('iframe');
             nIfr.id = "xcanwin";
             nIfr.style = `height: 0px; width: 100%;`;
             if (u) {
                 nIfr.src = u;
             }
             nIfr.onload = function() {
-                var nIfrText = $("#xcanwin").contentWindow.document.documentElement.innerText;
+                const nIfrText = $("#xcanwin").contentWindow.document.documentElement.innerText;
                 try {
                     $("#xcanwin").contentWindow.document.documentElement.style = `background: #FCF3CF; height: 360px; width: 1080px; overflow; auto;`;
                     if (nIfrText.indexOf(`"expires":"`) > -1) {
@@ -171,11 +171,11 @@
         }
     };
 
-    var keepChat = function() {
+    const keepChat = function() {
         fetch(u).then((response) => {
             response.text().then((data) => {
                 try {
-                    var contentType = response.headers.get('Content-Type');
+                    const contentType = response.headers.get('Content-Type');
                     if (contentType.indexOf("application/json") > -1 && response.status !== 403 && data.indexOf(`"expires":"`) > -1) {
                         console.log(`KeepChatGPT: FETCH: Expire date: ${formatDate(JSON.parse(data).expires)}`);
                         $("#xcanwin").contentWindow.document.documentElement.innerHTML = formatJson(data);
@@ -190,16 +190,16 @@
         });
     }
 
-    var ncheckbox = function() {
-        var nsvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    const ncheckbox = function() {
+        const nsvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         nsvg.setAttribute("viewBox", "0 0 100 30");
         nsvg.classList.add("checkbutton");
         nsvg.innerHTML = `<g fill="none" fill-rule="evenodd"><path fill="#E3E3E3" d="M0 15C0 6.716 6.716 0 15 0h14c8.284 0 15 6.716 15 15s-6.716 15-15 15H15C6.716 30 0 23.284 0 15z"/><circle fill="#FFF" cx="15" cy="15" r="13"/></g>`;
         return nsvg.cloneNode(true);
     };
 
-    var ndialog = function(title = 'KeepChatGPT', content = '', buttonvalue = 'OK', buttonfun = function(t){}, inputtype = 'br', inputvalue = '') {
-        var ndivalert = document.createElement('div');
+    const ndialog = function(title = 'KeepChatGPT', content = '', buttonvalue = 'OK', buttonfun = function(t) {return t;}, inputtype = 'br', inputvalue = '') {
+        const ndivalert = document.createElement('div');
         ndivalert.setAttribute("class", "kdialog relative z-50");
         ndivalert.innerHTML = `
 <div class="fixed inset-0 bg-gray-500/90"></div>
@@ -239,11 +239,11 @@
         document.body.appendChild(ndivalert);
     };
 
-    var loadMenu = function() {
-        if ($(".kmenu")!==null) {
+    const loadMenu = function() {
+        if ($(".kmenu") !== null) {
             return;
         }
-        var ndivmenu = document.createElement('div');
+        const ndivmenu = document.createElement('div');
         ndivmenu.setAttribute("class", "kmenu");
         ndivmenu.innerHTML = `<ul style="display: flex;"><li id=nmenuid_sd>${tl("显示调试")}</li><li id=nmenuid_dm>${tl("暗色主题")}</li><li id=nmenuid_ca>${tl("取消动画")}</li><li id=nmenuid_cm>${tl("取消审计")}</li><li id=nmenuid_af>${tl("调整间隔")}</li><li id=nmenuid_cu>${tl("检测更新")}</li><li id=nmenuid_ab>${tl("关于")}</li></ul>`;
         document.body.appendChild(ndivmenu);
@@ -315,12 +315,12 @@
         };
     };
 
-    var loadKCG = function() {
-        var symbol_prt;
-        if ($("#kcg")!==null) {
+    const loadKCG = function() {
+        let symbol_prt;
+        if ($("#kcg") !== null) {
             return;
         }
-        if ($("main").kcg!==undefined) {
+        if ($("main").kcg !== undefined) {
             if ($(symbol1_class)) {
                 $("main").kcg.innerHTML = $("main").kcg._symbol1_innerHTML;
                 symbol_prt = $(symbol1_class).parentElement;
@@ -335,11 +335,11 @@
         loadMenu();
         setIfr(u);
 
-        var ndivkcg = document.createElement("div");
+        const ndivkcg = document.createElement("div");
         ndivkcg.id = "kcg";
         ndivkcg.setAttribute("class", "shine flex py-3 px-3 items-center gap-3 rounded-md text-sm mb-1 flex-shrink-0 border border-white/20");
 
-        var ndivmenu = $(".kmenu");
+        const ndivmenu = $(".kmenu");
         ndivkcg.onmouseover = ndivmenu.onmouseover = function() {
             if ($("#kcg")) {
                 ndivmenu.style.display = 'block';
@@ -351,7 +351,7 @@
             ndivmenu.style.display = 'none';
         };
         ndivkcg.onclick = function() {
-            if (ndivmenu.style.display == 'none') {
+            if (ndivmenu.style.display === 'none') {
                 ndivmenu.style.display = 'block';
                 ndivmenu.style.left = `${$("#kcg").getBoundingClientRect().right + 20}px`;
                 ndivmenu.style.top = `${$("#kcg").getBoundingClientRect().top}px`;
@@ -359,7 +359,7 @@
                 ndivmenu.style.display = 'none';
             }
         };
-        var icon = GM_info.script.icon ? GM_info.script.icon : `${GM_info.script.namespace}raw/main/assets/logo.svg`;
+        const icon = GM_info.script.icon ? GM_info.script.icon : `${GM_info.script.namespace}raw/main/assets/logo.svg`;
         ndivkcg._symbol1_innerHTML = `<img src='${icon}' />Keep${ndivkcg.id.slice(1,2).toUpperCase()}hatGPT`;
         ndivkcg._symbol2_innerHTML = `Keep${ndivkcg.id.slice(1,2).toUpperCase()}hatGPT`;
 
@@ -377,7 +377,7 @@
         setUserOptions();
     };
 
-    var addStyle = function() {
+    const addStyle = function() {
         GM_addStyle(`
 #kcg {
     color: #555;
@@ -489,15 +489,15 @@ nav {
 `);
     };
 
-    var setUserOptions = function() {
-        if (gv("k_showDebug", false) == true) {
+    const setUserOptions = function() {
+        if (gv("k_showDebug", false) === true) {
             $('#nmenuid_sd .checkbutton').classList.add('checked');
             if ($('#xcanwin')) $('#xcanwin').style.height = '80px';
         } else {
             if ($('#xcanwin')) $('#xcanwin').style.height = '0px';
         }
 
-        if (gv("k_theme", "light") == "light") {
+        if (gv("k_theme", "light") === "light") {
             $('#kcg').styleOrigin = $('#kcg').style;
         } else {
             $('#nmenuid_dm .checkbutton').classList.add('checked');
@@ -507,28 +507,28 @@ nav {
             $('#kcg').style.marginRight = "inherit";
         }
 
-        if (gv("k_closeModer", false) == true) {
+        if (gv("k_closeModer", false) === true) {
             $('#nmenuid_cm .checkbutton').classList.add('checked');
             byeModer(true);
         } else {
             byeModer(false);
         }
-        if (gv("k_cancelAnimation", false) == true) {
+        if (gv("k_cancelAnimation", false) === true) {
             $('#nmenuid_ca .checkbutton').classList.add('checked');
-            $('#kcg').classList.toggle('shine');
+            $('#kcg').classList.remove('shine');
         } else {
             $('#kcg').classList.add('shine');
         }
     };
 
-    var byeModer = function(action) {
-        if (typeof _fetch == 'undefined') {
+    let byeModer = function(action) {
+        if (typeof _fetch === 'undefined') {
             var _fetch = fetch;
         }
-        if (action == true) {
+        if (action === true) {
             unsafeWindow.fetch = new Proxy(fetch, {
                 apply: function (target, thisArg, argumentsList) {
-                    var n = {};
+                    const n = {};
                     n.json = function() {return {};};
                     return argumentsList[0].includes('moderations') ? Promise.resolve(n) : target.apply(thisArg, argumentsList);
                 }
@@ -538,16 +538,16 @@ nav {
         }
     };
 
-    var byeConversationNotFound = function(action) {
-        if (typeof _fetch == 'undefined') {
+    let byeConversationNotFound = function(action) {
+        if (typeof _fetch === 'undefined') {
             var _fetch = fetch;
         }
-        if (action == true) {
+        if (action === true) {
             unsafeWindow.fetch = new Proxy(_fetch, {
                 apply: function (target, thisArg, argumentsList) {
                     try {
                         if (argumentsList[0].includes('conversation')) {
-                            var post_body = JSON.parse(argumentsList[1].body);
+                            const post_body = JSON.parse(argumentsList[1].body);
                             post_body.conversation_id = location.href.match(/\/c\/(.*)/)[1];
                             argumentsList[1].body = JSON.stringify(post_body);
                         }
@@ -560,44 +560,64 @@ nav {
         }
     };
 
-    var checkForUpdates = function() {
-        var crv = GM_info.script.version;
-        var updateURL = GM_info.scriptUpdateURL || GM_info.script.updateURL || GM_info.script.downloadURL;
+    const verInt = function(vs) {
+        const vl = vs.split('.');
+        let vi = 0;
+        for (let i = 0; i < vl.length && i < 3; i++) {
+            vi += parseInt(vl[i]) * (1000 ** (2 - i));
+        }
+        return vi;
+    }
+
+    const checkForUpdates = function() {
+        const crv = GM_info.script.version;
+        let updateURL = GM_info.scriptUpdateURL || GM_info.script.updateURL || GM_info.script.downloadURL;
+        updateURL = `${updateURL}?t=${Date.now()}`;
         fetch(updateURL, {
             cache: 'no-cache'
         }).then((response) => {
             response.text().then((data) => {
-                var m = data.match(/@version\s+(\S+)/);
-                var ltv = m && m[1];
-                if (ltv && ltv > crv) {
-                    ndialog(`${tl("检测更新")}`, `${tl("当前版本")}: ${crv}, ${tl("发现最新版")}: ${ltv}`, `UPDATE`, function(t) {
+                const m = data.match(/@version\s+(\S+)/);
+                const ltv = m && m[1];
+                if (ltv && verInt(ltv) > verInt(crv)) {
+                    ndialog(`${tl("检查更新")}`, `${tl("当前版本")}: ${crv}, ${tl("发现最新版")}: ${ltv}`, `UPDATE`, function(t) {
                         window.open(updateURL, '_blank');
                     });
                 } else {
-                    ndialog(`${tl("检测更新")}`, `${tl("当前版本")}: ${crv}, ${tl("已是最新版")}`, `OK`);
+                    ndialog(`${tl("检查更新")}`, `${tl("当前版本")}: ${crv}, ${tl("已是最新版")}`, `OK`);
                 }
             });
         }).catch(e => console.log(e));
     }
 
-    var nInterval1Fun = function() {
+    const tempFixOpenAI = function() {
+        const account = $('button[id^="headlessui-menu"] > .grow', top.document);
+        if (account) {
+            account.classList.add('text-ellipsis', 'truncate');
+            account.style.maxWidth = '10.3rem';
+        }
+    };
+
+    const nInterval1Fun = function() {
         if ($(symbol1_class) || $(symbol2_class)) {
             loadKCG();
         }
     };
 
-    var nInterval2Fun = function() {
+    const nInterval2Fun = function() {
         if ($(symbol1_class) || $(symbol2_class)) {
             keepChat();
         }
     };
 
-    var nInterval1 = setInterval(nInterval1Fun, 300);
-    var interval2Time = parseInt(gv("k_interval", 60));
-    var nInterval2 = setInterval(nInterval2Fun, 1000 * interval2Time);
+    let nInterval1 = setInterval(nInterval1Fun, 300);
+    let interval2Time = parseInt(gv("k_interval", 70));
+    let nInterval2 = setInterval(nInterval2Fun, 1000 * interval2Time);
 
-    var u = `/api/${GM_info.script.namespace.slice(33, 34)}uth/s${GM_info.script.namespace.slice(28, 29)}ssion`;
-    var symbol1_class = 'nav>a.flex';
-    var symbol2_class = 'button.justify-center';
+    const u = `/api/${GM_info.script.namespace.slice(33, 34)}uth/s${GM_info.script.namespace.slice(28, 29)}ssion`;
+    const symbol1_class = 'nav>a.flex';
+    const symbol2_class = 'button.justify-center';
+
+    tempFixOpenAI();
 
 })();
